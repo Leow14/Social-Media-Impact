@@ -1,6 +1,15 @@
-data-analysis/venv/
+﻿# Python virtual environment
+Data analysis/venv/
+
+# React dependencies
 my-react-app/node_modules/
+
+# Python generated files
 __pycache__/
 *.pyc
+
+# Jupyter generated files
 .ipynb_checkpoints/
+
+# Local secrets/config
 .env

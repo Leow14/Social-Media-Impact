@@ -13,3 +13,6 @@ __pycache__/
 
 # Local secrets/config
 .env
+
+# Local notebook recovery backups
+*.before-clean.backup

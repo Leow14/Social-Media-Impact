@@ -1,12 +1,22 @@
 #Import libraries and frameworks
+import pandas as pd
+
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+from sklearn.preprocessing import StandardScaler
 
 #Load the dataset
+df = pd.read_csv("Teen_Mental_Health_Dataset.csv")
 
 #Inspect the dataset
 #    Show shape
+print(df.shape)
 #    Show column names
+print(df.columns.to_list())
 #    Check data types
+print(df.dtypes)
 #    Check missing values
+print(df.isna().sum())
 
 #Choose the features for clustering
 #    Keep only numeric columns

@@ -1,0 +1,6 @@
+data-analysis/venv/
+my-react-app/node_modules/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.env

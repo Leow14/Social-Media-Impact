@@ -20,6 +20,7 @@ print(df.isna().sum())
 
 #Choose the features for clustering
 #    Keep only numeric columns
+
 #    Remove variables that are not useful for clustering
 #    Decide whether to include depression_label or not
 

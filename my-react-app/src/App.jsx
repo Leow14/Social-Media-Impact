@@ -3,6 +3,15 @@ import AgeBarCard from "./AgeBarCard.jsx"
 import StressBarCard from "./StressBarCard.jsx"
 import AnxietyBarCard from "./AnxietyBarCard.jsx"
 import AddictionBarCard from "./AddictionBarCard.jsx"
+import DailySocialBarCard from "./DailySocialBarCard.jsx"
+import GenderDonutCard from "./GenderDonutCard.jsx"
+import PlatformUsageDonutCard from "./PlatformUsageDonutCard.jsx"
+import SocialInteractionDonutCard from "./SocialInteractionDonutCard.jsx"
+import DepressionLabelDonutCard from "./DepressionLabelDonutCard.jsx"
+import SleepHoursHistogramCard from "./SleepHoursHistogramCard.jsx"
+import ScreenTimeBeforeSleepHistogramCard from "./ScreenTimeBeforeSleepHistogramCard.jsx"
+import AcademicPerformanceHistogramCard from "./AcademicPerformanceHistogramCard.jsx"
+import PhysicalActivityHistogramCard from "./PhysicalActivityHistogramCard.jsx"
 
 function App() {
 return (
@@ -13,10 +22,19 @@ return (
         <section id="understanding-data">
           <h2>Understanding the Data</h2>
           <div className="charts-grid">
-            <AgeBarCard />
-            <StressBarCard />
-            <AnxietyBarCard />
-            <AddictionBarCard />
+            <AgeBarCard/>
+            <StressBarCard/>
+            <AnxietyBarCard/>
+            <AddictionBarCard/>
+            <DailySocialBarCard/>
+            <GenderDonutCard/>
+            <PlatformUsageDonutCard/>
+            <SocialInteractionDonutCard/>
+            <DepressionLabelDonutCard/>
+            <SleepHoursHistogramCard/>
+            <ScreenTimeBeforeSleepHistogramCard/>
+            <AcademicPerformanceHistogramCard/>
+            <PhysicalActivityHistogramCard/>
           </div>
         </section>
 

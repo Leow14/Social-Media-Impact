@@ -22,8 +22,13 @@ const chartOptions = {
         size: 20
       }
     },
-    legend: {
-      position: "bottom"
+  legend: {
+      position: "bottom",
+      labels: {
+        font: {
+          size: 25
+        }
+      }
     }
   }
 }
@@ -60,7 +65,7 @@ function PlatformUsageDonutCard() {
         const data = parseCsv(csvText)
         const counts = countByColumn(data, "platform_usage")
         const labels = Object.keys(counts)
-        const colors = ["#E4FF1A", "#275DAD", "#8B80F9"]
+        const colors = ["#F94144", "#90BE6D", "#4D908E"]
 
         setChartData({
           labels,
@@ -68,9 +73,7 @@ function PlatformUsageDonutCard() {
             {
               label: "Students",
               data: Object.values(counts),
-              backgroundColor: labels.map((_, index) => colors[index % colors.length]),
-              borderColor: "#000000",
-              borderWidth: 0.8
+              backgroundColor: labels.map((_, index) => colors[index % colors.length])
             }
           ]
         })

@@ -19,7 +19,7 @@ const chartOptions = {
   plugins: {
     title: {
       display: true,
-      text: "Students by stress level",
+      text: "Students by age",
       font: {
         size: 30
       }
@@ -55,7 +55,7 @@ const chartOptions = {
 }
 
 
-function StressBarCard() {
+function AgeBarCard() {
   const [chartData, setChartData] = useState(null)
 
   useEffect(() => {
@@ -77,17 +77,17 @@ function StressBarCard() {
         const ageCounts = {}
 
         data.forEach((row) => {
-          const stress_level = row.stress_level
-          ageCounts[stress_level] = (ageCounts[stress_level] || 0) + 1
+          const age = row.age
+          ageCounts[age] = (ageCounts[age] || 0) + 1
         })
 
         setChartData({
           labels: Object.keys(ageCounts),
           datasets: [
             {
-              label: "Students by stress level",
+              label: "Students by age",
               data: Object.values(ageCounts),
-              backgroundColor: "#43AA8B"
+              backgroundColor: "#4D908E"
             }
           ]
         })
@@ -100,4 +100,4 @@ function StressBarCard() {
     </div>
   )
 }
-export default StressBarCard
+export default AgeBarCard

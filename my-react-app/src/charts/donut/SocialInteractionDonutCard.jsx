@@ -23,11 +23,15 @@ const chartOptions = {
       }
     },
     legend: {
-      position: "bottom"
+      position: "bottom",
+      labels: {
+        font: {
+          size: 25
+        }
+      }
     }
   }
 }
-
 function parseCsv(csvText) {
   const rows = csvText.trim().split("\n")
   const headers = rows[0].split(",")
@@ -60,7 +64,7 @@ function SocialInteractionDonutCard() {
         const data = parseCsv(csvText)
         const counts = countByColumn(data, "social_interaction_level")
         const labels = Object.keys(counts)
-        const colors = ["#F05365", "#8B80F9", "#92B4A7"]
+        const colors = ["#277DA1", "#F3722C", "#F9C74F"]
 
         setChartData({
           labels,
@@ -68,9 +72,7 @@ function SocialInteractionDonutCard() {
             {
               label: "Students",
               data: Object.values(counts),
-              backgroundColor: labels.map((_, index) => colors[index % colors.length]),
-              borderColor: "#000000",
-              borderWidth: 0.8
+              backgroundColor: labels.map((_, index) => colors[index % colors.length])
             }
           ]
         })

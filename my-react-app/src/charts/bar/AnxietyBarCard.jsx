@@ -12,14 +12,13 @@ import { Bar } from "react-chartjs-2"
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
-
 const chartOptions = {
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
     title: {
       display: true,
-      text: "Students by addiction level",
+      text: "Students by anxiety level",
       font: {
         size: 30
       }
@@ -54,8 +53,7 @@ const chartOptions = {
   }
 }
 
-
-function AddictionBarCard() {
+function AnxietyBarCard() {
   const [chartData, setChartData] = useState(null)
 
   useEffect(() => {
@@ -77,17 +75,17 @@ function AddictionBarCard() {
         const ageCounts = {}
 
         data.forEach((row) => {
-          const addiction_level = row.addiction_level
-          ageCounts[addiction_level] = (ageCounts[addiction_level] || 0) + 1
+          const anxiety_level = row.anxiety_level
+          ageCounts[anxiety_level] = (ageCounts[anxiety_level] || 0) + 1
         })
 
         setChartData({
           labels: Object.keys(ageCounts),
           datasets: [
             {
-              label: "Students by addiction level",
+              label: "Students by anxiety level",
               data: Object.values(ageCounts),
-              backgroundColor: "#F9C74F"
+              backgroundColor: "#F94144"
             }
           ]
         })
@@ -100,4 +98,4 @@ function AddictionBarCard() {
     </div>
   )
 }
-export default AddictionBarCard
+export default AnxietyBarCard

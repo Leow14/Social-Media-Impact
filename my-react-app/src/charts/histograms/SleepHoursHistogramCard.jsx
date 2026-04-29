@@ -21,7 +21,7 @@ const chartOptions = {
     },
     title: {
       display: true,
-      text: "Screen Time Before Sleep",
+      text: "Sleep Hours",
       font: {
         size: 20
       }
@@ -75,7 +75,7 @@ function createHistogramBins(values, binCount) {
   return bins
 }
 
-function ScreenTimeBeforeSleepHistogramCard() {
+function SleepHoursHistogramCard() {
   const [chartData, setChartData] = useState(null)
 
   useEffect(() => {
@@ -83,8 +83,8 @@ function ScreenTimeBeforeSleepHistogramCard() {
       .then((response) => response.text())
       .then((csvText) => {
         const data = parseCsv(csvText)
-        const values = data.map((row) => Number(row.screen_time_before_sleep))
-        const bins = createHistogramBins(values, 5)
+        const values = data.map((row) => Number(row.sleep_hours))
+        const bins = createHistogramBins(values, 10)
 
         setChartData({
           labels: bins.map((bin) => bin.label),
@@ -92,8 +92,8 @@ function ScreenTimeBeforeSleepHistogramCard() {
             {
               label: "Frequency",
               data: bins.map((bin) => bin.count),
-              backgroundColor: "#0C1B33",
-              borderColor: "#000000",
+              backgroundColor: "#277DA1",
+              borderColor: "#ffffff",
               borderWidth: 1.5,
               categoryPercentage: 1,
               barPercentage: 1
@@ -110,4 +110,4 @@ function ScreenTimeBeforeSleepHistogramCard() {
   )
 }
 
-export default ScreenTimeBeforeSleepHistogramCard
+export default SleepHoursHistogramCard

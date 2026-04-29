@@ -92,8 +92,8 @@ function AcademicPerformanceHistogramCard() {
             {
               label: "Frequency",
               data: bins.map((bin) => bin.count),
-              backgroundColor: "#275DAD",
-              borderColor: "#000000",
+              backgroundColor: "#90BE6D",
+              borderColor: "#ffffff",
               borderWidth: 1.5,
               categoryPercentage: 1,
               barPercentage: 1

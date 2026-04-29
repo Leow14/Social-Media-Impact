@@ -21,7 +21,7 @@ const chartOptions = {
     },
     title: {
       display: true,
-      text: "Physical Activity",
+      text: "Screen Time Before Sleep",
       font: {
         size: 20
       }
@@ -75,7 +75,7 @@ function createHistogramBins(values, binCount) {
   return bins
 }
 
-function PhysicalActivityHistogramCard() {
+function ScreenTimeBeforeSleepHistogramCard() {
   const [chartData, setChartData] = useState(null)
 
   useEffect(() => {
@@ -83,8 +83,8 @@ function PhysicalActivityHistogramCard() {
       .then((response) => response.text())
       .then((csvText) => {
         const data = parseCsv(csvText)
-        const values = data.map((row) => Number(row.physical_activity))
-        const bins = createHistogramBins(values, 8)
+        const values = data.map((row) => Number(row.screen_time_before_sleep))
+        const bins = createHistogramBins(values, 5)
 
         setChartData({
           labels: bins.map((bin) => bin.label),
@@ -92,8 +92,8 @@ function PhysicalActivityHistogramCard() {
             {
               label: "Frequency",
               data: bins.map((bin) => bin.count),
-              backgroundColor: "#5F0F40",
-              borderColor: "#000000",
+              backgroundColor: "#F94144",
+              borderColor: "#ffffff",
               borderWidth: 1.5,
               categoryPercentage: 1,
               barPercentage: 1
@@ -110,4 +110,4 @@ function PhysicalActivityHistogramCard() {
   )
 }
 
-export default PhysicalActivityHistogramCard
+export default ScreenTimeBeforeSleepHistogramCard

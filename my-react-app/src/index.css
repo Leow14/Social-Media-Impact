@@ -24,6 +24,28 @@ section {
   margin: 42px 0;
 }
 
+.section-title {
+  color: #111827;
+  font-size: 3.5rem;
+  line-height: 1.2;
+  margin: 0 0 16px;
+}
+
+.content-title {
+  color: #111827;
+  font-size: 2rem;
+  line-height: 1.25;
+  margin: 36px 0 12px;
+}
+
+.section-paragraph {
+  color: #374151;
+  font-size: 1.5rem;
+  line-height: 1.7;
+  max-width: 900px;
+  text-align: left;
+}
+
 .charts-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -116,4 +138,18 @@ section {
   main {
     margin: 0 auto;
   }
+}
+
+.content-divider {
+  border: 0;
+  height: 8px;
+  width: 100%;
+  background-color: #1f3a5f;
+  margin: 40px 0;
+}
+
+.section-divider {
+  border: 0;
+  border-top: 16px solid #1f3a5f;
+  margin: 56px 0;
 }

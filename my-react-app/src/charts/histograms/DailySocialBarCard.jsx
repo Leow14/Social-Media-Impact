@@ -121,10 +121,10 @@ function DailySocialBarCard() {
             {
               label: "Frequency",
               data: Object.values(bins),
-              backgroundColor: "#277DA1",
+              backgroundColor: "#F8961E",
               categoryPercentage: 1,
               barPercentage: 1,
-              borderColor: "#000000",
+              borderColor: "#ffffff",
               borderWidth: 1.5
             }
           ]

@@ -19,11 +19,16 @@ const chartOptions = {
       display: true,
       text: "Gender Distribution",
       font: {
-        size: 20
+        size: 25
       }
     },
     legend: {
-      position: "bottom"
+      position: "bottom",
+      labels: {
+        font: {
+          size: 25
+        }
+      }
     }
   }
 }
@@ -60,7 +65,7 @@ function GenderDonutCard() {
         const data = parseCsv(csvText)
         const counts = countByColumn(data, "gender")
         const labels = Object.keys(counts)
-        const colors = ["#0C1B33", "#F05365"]
+        const colors = ["#F8961E", "#43AA8B"]
 
         setChartData({
           labels,
@@ -68,9 +73,7 @@ function GenderDonutCard() {
             {
               label: "Students",
               data: Object.values(counts),
-              backgroundColor: labels.map((_, index) => colors[index % colors.length]),
-              borderColor: "#000000",
-              borderWidth: 0.8
+              backgroundColor: labels.map((_, index) => colors[index % colors.length])
             }
           ]
         })

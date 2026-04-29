@@ -23,7 +23,12 @@ const chartOptions = {
       }
     },
     legend: {
-      position: "bottom"
+      position: "bottom",
+      labels: {
+        font: {
+          size: 25
+        }
+      }
     }
   }
 }
@@ -65,8 +70,8 @@ function DepressionLabelDonutCard() {
         const notDepressedPercentage = ((notDepressedCount / total) * 100).toFixed(1)
         const depressedPercentage = ((depressedCount / total) * 100).toFixed(1)
         const labels = [
-          `Not depressed (${notDepressedPercentage}%)`,
-          `Depressed (${depressedPercentage}%)`
+          `Not depressed `,
+          `Depressed `
         ]
 
         setChartData({
@@ -75,9 +80,7 @@ function DepressionLabelDonutCard() {
             {
               label: "Students",
               data: [notDepressedCount, depressedCount],
-              backgroundColor: ["#8B80F9", "#F05365"],
-              borderColor: "#000000",
-              borderWidth: 0.8
+              backgroundColor: ["#F3722C", "#577590"]
             }
           ]
         })

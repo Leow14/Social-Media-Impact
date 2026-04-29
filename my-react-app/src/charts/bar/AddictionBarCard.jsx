@@ -19,7 +19,7 @@ const chartOptions = {
   plugins: {
     title: {
       display: true,
-      text: "Students by age",
+      text: "Students by addiction level",
       font: {
         size: 30
       }
@@ -55,7 +55,7 @@ const chartOptions = {
 }
 
 
-function AgeBarCard() {
+function AddictionBarCard() {
   const [chartData, setChartData] = useState(null)
 
   useEffect(() => {
@@ -77,17 +77,17 @@ function AgeBarCard() {
         const ageCounts = {}
 
         data.forEach((row) => {
-          const age = row.age
-          ageCounts[age] = (ageCounts[age] || 0) + 1
+          const addiction_level = row.addiction_level
+          ageCounts[addiction_level] = (ageCounts[addiction_level] || 0) + 1
         })
 
         setChartData({
           labels: Object.keys(ageCounts),
           datasets: [
             {
-              label: "Students by age",
+              label: "Students by addiction level",
               data: Object.values(ageCounts),
-              backgroundColor: "#F3722C"
+              backgroundColor: "#90BE6D"
             }
           ]
         })
@@ -100,4 +100,4 @@ function AgeBarCard() {
     </div>
   )
 }
-export default AgeBarCard
+export default AddictionBarCard

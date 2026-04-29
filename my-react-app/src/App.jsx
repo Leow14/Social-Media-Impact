@@ -14,6 +14,7 @@ import AcademicPerformanceHistogramCard from "./charts/histograms/AcademicPerfor
 import PhysicalActivityHistogramCard from "./charts/histograms/PhysicalActivityHistogramCard.jsx"
 import ContentDivider from "./ContentDivider.jsx"
 import SectionDivider from "./SectionDivider.jsx"
+import CorrelationHeatmap from "./charts/heat_map/CorrelationHeatmap.jsx"
 
 function App() {
 return (
@@ -67,6 +68,15 @@ return (
 
         <section id="correlations">
           <h2 className="section-title">Correlations & Outliers</h2>
+
+          <p className="section-paragraph">
+            This heatmap shows how numeric variables relate to each other.
+            Green indicates positive correlation, while red indicates negative correlation.
+          </p>
+
+          <div className="charts-grid">
+            <CorrelationHeatmap />
+          </div>
         </section>
 
         <section id="clustering">

@@ -153,3 +153,7 @@ section {
   border-top: 16px solid #1f3a5f;
   margin: 56px 0;
 }
+
+.heatmap-card {
+  height: clamp(400px, 40vw, 520px);
+}

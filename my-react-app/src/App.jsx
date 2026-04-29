@@ -1,6 +1,8 @@
 import Header from "./Header.jsx"
 import AgeBarCard from "./AgeBarCard.jsx"
 import StressBarCard from "./StressBarCard.jsx"
+import AnxietyBarCard from "./AnxietyBarCard.jsx"
+import AddictionBarCard from "./AddictionBarCard.jsx"
 
 function App() {
 return (
@@ -10,8 +12,12 @@ return (
       <main>
         <section id="understanding-data">
           <h2>Understanding the Data</h2>
-          <AgeBarCard />
-          <StressBarCard/>
+          <div className="charts-grid">
+            <AgeBarCard />
+            <StressBarCard />
+            <AnxietyBarCard />
+            <AddictionBarCard />
+          </div>
         </section>
 
         <section id="correlations">

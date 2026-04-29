@@ -12,50 +12,7 @@ import { Bar } from "react-chartjs-2"
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
-
-const chartOptions = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    title: {
-      display: true,
-      text: "Students by stress level",
-      font: {
-        size: 30
-      }
-    },
-    legend: {
-      display: false
-    },
-    tooltip: {
-      titleFont: {
-        size: 16
-      },
-      bodyFont: {
-        size: 14
-      }
-    }
-  },
-  scales: {
-    x: {
-      ticks: {
-        font: {
-          size: 20
-        }
-      }
-    },
-    y: {
-      ticks: {
-        font: {
-          size: 20
-        }
-      }
-    }
-  }
-}
-
-
-function StressBarCard() {
+function DailySocialBarCard() {
   const [chartData, setChartData] = useState(null)
 
   useEffect(() => {
@@ -77,17 +34,17 @@ function StressBarCard() {
         const ageCounts = {}
 
         data.forEach((row) => {
-          const stress_level = row.stress_level
-          ageCounts[stress_level] = (ageCounts[stress_level] || 0) + 1
+          const daily_social_media_hours = row.daily_social_media_hours
+          ageCounts[daily_social_media_hours] = (ageCounts[daily_social_media_hours] || 0) + 1
         })
 
         setChartData({
           labels: Object.keys(ageCounts),
           datasets: [
             {
-              label: "Students by stress level",
+              label: "Students by Daily Social Media Hours Spent",
               data: Object.values(ageCounts),
-              backgroundColor: "#43AA8B"
+              backgroundColor: "#277DA1"
             }
           ]
         })
@@ -96,8 +53,8 @@ function StressBarCard() {
 
      return (
     <div className="basic-card">
-      {chartData && <Bar data={chartData} options={chartOptions} />}
+      {chartData && <Bar data={chartData} />}
     </div>
   )
 }
-export default StressBarCard
+export default DailySocialBarCard

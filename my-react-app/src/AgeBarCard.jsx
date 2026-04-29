@@ -12,6 +12,49 @@ import { Bar } from "react-chartjs-2"
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
+
+const chartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    title: {
+      display: true,
+      text: "Students by age",
+      font: {
+        size: 30
+      }
+    },
+    legend: {
+      display: false
+    },
+    tooltip: {
+      titleFont: {
+        size: 16
+      },
+      bodyFont: {
+        size: 14
+      }
+    }
+  },
+  scales: {
+    x: {
+      ticks: {
+        font: {
+          size: 20
+        }
+      }
+    },
+    y: {
+      ticks: {
+        font: {
+          size: 20
+        }
+      }
+    }
+  }
+}
+
+
 function AgeBarCard() {
   const [chartData, setChartData] = useState(null)
 
@@ -44,7 +87,7 @@ function AgeBarCard() {
             {
               label: "Students by age",
               data: Object.values(ageCounts),
-              backgroundColor: "#277DA1"
+              backgroundColor: "#F3722C"
             }
           ]
         })
@@ -53,7 +96,7 @@ function AgeBarCard() {
 
      return (
     <div className="basic-card">
-      {chartData && <Bar data={chartData} />}
+      {chartData && <Bar data={chartData} options={chartOptions} />}
     </div>
   )
 }

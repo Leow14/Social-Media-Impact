@@ -1,14 +1,54 @@
 body{
+  margin: 0;
   font-family: sans-serif, Arial;
+  background-color: #f5f7fb;
 }
 
 .basic-card{
   background-color: #dce6f0;
-  width: 550px;
-  height: 250px;
+  width: 100%;
+  height: clamp(320px, 32vw, 430px);
+  padding: 18px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: center;
-  
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+main {
+  width: min(1180px, calc(100% - 300px));
+  margin: 0 20px 0 280px;
+}
+
+section {
+  margin: 42px 0;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  align-items: stretch;
+}
+
+.basic-card canvas {
+  max-width: 100%;
+}
+
+@media (max-width: 780px) {
+  main {
+    width: min(100% - 24px, 1180px);
+    margin: 0 auto;
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .basic-card {
+    height: 300px;
+  }
 }
 
 
@@ -16,21 +56,27 @@ body{
 .app-header {
   background-color: #1f3a5f;
   color: white;
-  padding: 24px 40px;
-  text-align: center;
+  width: 240px;
+  height: 100vh;
+  padding: 28px 24px;
+  text-align: left;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .app-header h1 {
-  margin: 0 0 18px;
-  font-size: 2rem;
+  margin: 0 0 32px;
+  font-size: 1.35rem;
   font-weight: 700;
+  line-height: 1.25;
 }
 
 .app-header nav {
   display: flex;
-  justify-content: center;
-  gap: 24px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .app-header nav a {
@@ -38,8 +84,36 @@ body{
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
+  padding: 10px 12px;
+  border-radius: 6px;
 }
 
 .app-header nav a:hover {
-  text-decoration: underline;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+@media (max-width: 780px) {
+  .app-header {
+    width: 100%;
+    height: auto;
+    padding: 22px 24px;
+    position: static;
+    text-align: center;
+  }
+
+  .app-header h1 {
+    margin-bottom: 18px;
+    font-size: 1.45rem;
+  }
+
+  .app-header nav {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  main {
+    margin: 0 auto;
+  }
 }

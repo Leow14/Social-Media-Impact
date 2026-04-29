@@ -35,6 +35,9 @@ const columns = [
 function CorrelationHeatmap() {
   const [chartData, setChartData] = useState(null)
 
+  const [mode, setMode] = useState("overall")
+  const [selectedGroup, setSelectedGroup] = useState("all")
+
   useEffect(() => {
     fetch("/Teen_Mental_Health_Dataset.csv")
       .then((res) => res.text())
@@ -43,14 +46,56 @@ function CorrelationHeatmap() {
         const headers = rows[0].split(",")
 
         const data = rows.slice(1).map((row) => {
-          const values = row.split(",")
+        const values = row.split(",")
 
-          return headers.reduce((obj, header, index) => {
-            const val = parseFloat(values[index])
-          obj[header] = isNaN(val) ? null : val
-            return obj
-          }, {})
-        })
+        const obj = headers.reduce((acc, header, index) => {
+          const val = parseFloat(values[index])
+          acc[header] = isNaN(val) ? null : val
+          return acc
+        }, {})
+
+        // usage_group
+        if (obj.daily_social_media_hours !== null) {
+          if (obj.daily_social_media_hours < 2) obj.usage_group = "low"
+          else if (obj.daily_social_media_hours < 5) obj.usage_group = "medium"
+          else obj.usage_group = "high"
+        }
+
+        return obj
+      })
+
+        function getFilteredData(data) {
+  let filtered = data
+
+  if (mode === "age") {
+    filtered = data.map((row) => {
+      const age = row.age
+
+      let age_group = null
+      if (age >= 13 && age <= 15) age_group = "13-15"
+      else if (age >= 16 && age <= 19) age_group = "16-19"
+
+      return { ...row, age_group }
+    })
+
+    if (selectedGroup !== "all") {
+      filtered = filtered.filter(
+        (row) => row.age_group === selectedGroup
+      )
+    }
+  }
+
+  // USAGE GROUP
+  if (mode === "usage") {
+    if (selectedGroup !== "all") {
+      filtered = data.filter(
+        (row) => row.usage_group === selectedGroup
+      )
+    }
+  }
+
+  return filtered
+}
 
         // 🔹 função de correlação (Pearson)
         function correlation(x, y) {
@@ -79,8 +124,15 @@ function CorrelationHeatmap() {
 
         columns.forEach((col1, i) => {
           columns.forEach((col2, j) => {
-            const x = data.map((row) => row[col1])
-            const y = data.map((row) => row[col2])
+
+            const filteredData = getFilteredData(data)
+
+            const validPairs = filteredData
+              .map(row => [row[col1], row[col2]])
+              .filter(([a, b]) => a !== null && b !== null)
+
+            const x = validPairs.map(v => v[0])
+            const y = validPairs.map(v => v[1])
 
             const corr = correlation(x, y)
 
@@ -115,7 +167,7 @@ function CorrelationHeatmap() {
           ]
         })
       })
-  }, [])
+  }, [mode, selectedGroup])
 
   const options = {
     responsive: true,
@@ -123,7 +175,7 @@ function CorrelationHeatmap() {
     plugins: {
       layout: {
         padding: {
-          top: 70,   // 🔥 aumenta esse valor
+          top: 70,
           left: 10,
           right: 10,
           bottom: 10
@@ -154,7 +206,7 @@ function CorrelationHeatmap() {
         }
       },
       y: {
-        offset: true,   // 🔥 MESMA COISA
+        offset: true,
         ticks: {
           callback: (val) => labelMap[columns[val]],
           font: { size: 11 }
@@ -165,6 +217,45 @@ function CorrelationHeatmap() {
 
   return (
     <div className="basic-card heatmap-card">
+
+      {/* CONTROLES */}
+      <div style={{ marginBottom: "10px" }}>
+        <select
+          value={mode}
+          onChange={(e) => {
+            setMode(e.target.value)
+            setSelectedGroup("all")
+          }}
+        >
+          <option value="overall">Overall</option>
+          <option value="age">Age Group</option>
+          <option value="usage">Usage Group</option>
+        </select>
+
+        {mode === "age" && (
+          <select
+            value={selectedGroup}
+            onChange={(e) => setSelectedGroup(e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="13-15">13-15</option>
+            <option value="16-19">16-19</option>
+          </select>
+        )}
+
+        {mode === "usage" && (
+          <select
+            value={selectedGroup}
+            onChange={(e) => setSelectedGroup(e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        )}
+      </div>
+
       {chartData && <Chart type="matrix" data={chartData} options={options} />}
     </div>
   )

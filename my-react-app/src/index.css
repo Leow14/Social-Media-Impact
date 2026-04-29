@@ -38,9 +38,16 @@ section {
   margin: 36px 0 12px;
 }
 
+.cluster-title {
+  color: #111827;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  margin: 36px 0 12px;
+}
+
 .section-paragraph {
   color: #374151;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   line-height: 1.7;
   max-width: 900px;
   text-align: left;
@@ -155,5 +162,9 @@ section {
 }
 
 .heatmap-card {
-  height: clamp(400px, 40vw, 520px);
+  height: clamp(400px, 50vw, 550px);
+}
+
+.basic-card.boxplot-card {
+  height: 600px;
 }

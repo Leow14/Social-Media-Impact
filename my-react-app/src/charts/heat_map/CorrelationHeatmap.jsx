@@ -199,8 +199,8 @@ function CorrelationHeatmap() {
         offset: true,
         ticks: {
           callback: (val) => labelMap[columns[val]],
-          maxRotation: 60,
-          minRotation: 60,
+          maxRotation: 45,
+          minRotation: 45,
           autoSkip: false,
           font: { size: 11 }
         }

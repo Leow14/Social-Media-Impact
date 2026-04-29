@@ -17,8 +17,11 @@ import SectionDivider from "./SectionDivider.jsx"
 import CorrelationHeatmap from "./charts/heat_map/CorrelationHeatmap.jsx"
 import BoxplotGrid from "./charts/boxplot/BoxplotGrid.jsx"
 import OutlierVisualization from "./charts/boxplot/OutlierVisualization.jsx";
+import { useState } from "react";
+
 
 function App() {
+  const [selectedColumn, setSelectedColumn] = useState("daily_social_media_hours");
 return (
     <>
       <Header />
@@ -105,13 +108,63 @@ return (
             Outliers may distort statistical analyses and machine learning models, so it is important to detect and handle them appropriately. <br/>
             However, as we can see, there are no outliers inside any of the numerical columns.
           </p>
-          <div className="charts-grid">
-            <OutlierVisualization />
+          
+          <div className="charts-grid" className="chart-outlier">
+            <div className="outlier-selector-container">
+              <label htmlFor="column-select" className="outlier-selector-label">
+                Escolha a variável numérica:
+              </label>
+              <select
+                id="column-select"
+                className="outlier-selector"
+                value={selectedColumn}
+                onChange={(e) => setSelectedColumn(e.target.value)}
+              >
+                <option value="daily_social_media_hours">Daily Social Media Hours</option>
+                <option value="screen_time_before_sleep">Screen Time Before Sleep</option>
+                <option value="sleep_hours">Sleep Hours</option>
+                <option value="stress_level">Stress Level</option>
+                <option value="anxiety_level">Anxiety Level</option>
+                <option value="academic_performance">Academic Performance</option>
+                <option value="physical_activity">Physical Activity</option>
+                <option value="addiction_level">Addiction Level</option>
+              </select>
+            </div>
+
+            <div className="charts-grid" className="chart-outlier">
+              <OutlierVisualization columnName={selectedColumn} />
+            </div>
           </div>
         </section>
 
         <section id="clustering">
           <h2 className="section-title">K-Means Clustering</h2>
+            <p className="section-paragraph">
+              K-Means is an unsupervised machine learning algorithm used to partition data into distinct groups, called clusters, based on similarity. <br/>
+              It works by assigning each data point to the cluster whose centroid (mean) is nearest, then iteratively updating centroids until convergence. <br/>
+              In this project, K-Means helps uncover hidden patterns in teen mental health data, grouping students with similar social media usage, mental health indicators, and lifestyle habits.<br/><br/>
+
+              Before applying K-Means, proper data preprocessing was essential. The dataset contained categorical variables like gender, preferred platform, and social interaction level. <br/>
+              These were transformed using <strong>one-hot encoding</strong> (for nominal categories without order) and <strong>ordinal encoding</strong> (for ordered categories like social interaction level). <br/>
+              Numerical columns (daily social media hours, sleep hours, stress level, anxiety level, academic performance, physical activity, and addiction level) were scaled using <strong>MinMaxScaler</strong>. <br/>
+              This standardization brings all features into the same range [0,1], preventing variables with larger scales (e.g., sleep hours) from dominating the distance calculations.<br/><br/>
+
+              Choosing the right number of clusters (k) is critical. Two techniques guided the decision: <br/>
+              - The <strong>elbow method</strong>: plotting within-cluster sum of squares (inertia) against k, the "elbow" point where inertia decreases more slowly indicates a suitable k. <br/>
+              - The <strong>silhouette score</strong>: measures how similar a point is to its own cluster compared to other clusters; higher scores (closer to 1) indicate better-defined clusters. <br/>
+              Based on both analyses, k=5 was selected as the optimal balance between internal cohesion and separation.<br/><br/>
+
+              Interpreting the five resulting clusters revealed distinct student profiles, such as "Younger Stressed Low-Interaction Users" (Cluster 0) and "Balanced Low-Risk Users" (Cluster 1). <br/>
+              Each cluster was analyzed by comparing its average feature values to the overall dataset, identifying risk factors like high stress, high addiction, poor sleep, or low social interaction. <br/>
+              Importantly, clustering does not imply causation – it only exposes associations that can guide further research or targeted interventions.
+            </p>
+          
+          <h3 className="content-title">K-Means Training and visualization</h3>
+            <p className="section-paragraph">
+              After training the K-Means model, we can now observe how the clusters were formed. <br/>
+              The plot below shows each student as a point, with different colors representing different clusters. <br/>
+              Ideally, points from the same cluster appear close together, revealing distinct student profiles.
+            </p>
           <h3 className="content-title">Cluster Interpretation</h3>
               <p className="section-paragraph">
                 The clustering analysis suggests five different student profiles based on social media use, 

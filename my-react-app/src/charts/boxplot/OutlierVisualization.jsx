@@ -11,7 +11,6 @@ import {
 
 ChartJS.register(LinearScale, PointElement, Title, Tooltip, Legend);
 
-// Função para calcular outliers usando o método IQR (1.5)
 function findOutliers(values) {
   if (values.length === 0) return [];
   const sorted = [...values].sort((a, b) => a - b);
@@ -31,32 +30,22 @@ function percentile(sortedArr, p) {
   return sortedArr[lower] * (upper - index) + sortedArr[upper] * (index - lower);
 }
 
-function OutlierVisualization() {
+function OutlierVisualization({ columnName }) {
   const [chartData, setChartData] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!columnName) return;
+
     fetch("/Teen_Mental_Health_Dataset.csv")
       .then((response) => response.text())
       .then((csvText) => {
         const rows = csvText.trim().split("\n");
         const headers = rows[0].split(",");
 
-        // Detecta o nome da coluna que contém horas de uso diário
-        const possibleNames = [
-          "daily_social_media_hours",
-          "daily_social_media_use",
-          "social_media_hours",
-          "daily_usage_hours",
-        ];
-        let colName = null;
-        for (const name of possibleNames) {
-          if (headers.includes(name)) {
-            colName = name;
-            break;
-          }
-        }
-        if (!colName) {
-          console.error("Coluna de horas diárias não encontrada. Headers:", headers);
+        // Verifica se a coluna existe
+        if (!headers.includes(columnName)) {
+          setError(`Coluna "${columnName}" não encontrada.`);
           return;
         }
 
@@ -68,29 +57,27 @@ function OutlierVisualization() {
           }, {});
         });
 
-        const dailyHours = data
-          .map((row) => parseFloat(row[colName]))
+        const columnValues = data
+          .map((row) => parseFloat(row[columnName]))
           .filter((val) => !isNaN(val));
 
-        if (dailyHours.length === 0) {
-          console.error("Nenhum dado numérico na coluna", colName);
+        if (columnValues.length === 0) {
+          setError(`Nenhum dado numérico na coluna "${columnName}".`);
           return;
         }
 
-        const outliers = findOutliers(dailyHours);
+        const outliers = findOutliers(columnValues);
         const outlierSet = new Set(outliers);
 
-        // Prepara pontos para o scatter plot
-        // Adiciona um pequeno jitter no eixo Y para separar os pontos (valores entre 0.8 e 1.2)
         const normalPoints = [];
         const outlierPoints = [];
 
-        dailyHours.forEach((hours) => {
-          const jitter = 0.8 + Math.random() * 0.4; // entre 0.8 e 1.2
-          if (outlierSet.has(hours)) {
-            outlierPoints.push({ x: hours, y: jitter });
+        columnValues.forEach((value) => {
+          const jitter = 0.8 + Math.random() * 0.4;
+          if (outlierSet.has(value)) {
+            outlierPoints.push({ x: value, y: jitter });
           } else {
-            normalPoints.push({ x: hours, y: jitter });
+            normalPoints.push({ x: value, y: jitter });
           }
         });
 
@@ -114,9 +101,13 @@ function OutlierVisualization() {
             },
           ],
         });
+        setError(null);
       })
-      .catch((error) => console.error("Erro ao carregar CSV:", error));
-  }, []);
+      .catch((error) => {
+        console.error(error);
+        setError("Erro ao carregar o arquivo CSV.");
+      });
+  }, [columnName]);
 
   const options = {
     responsive: true,
@@ -124,13 +115,13 @@ function OutlierVisualization() {
     plugins: {
       title: {
         display: true,
-        text: "Daily Social Media Hours - Outliers em vermelho",
+        text: `Outliers em "${columnName}" (vermelho)`,
         font: { size: 22 },
       },
       tooltip: {
         callbacks: {
           label: (context) => {
-            return `Horas: ${context.parsed.x.toFixed(2)}`;
+            return `${columnName}: ${context.parsed.x.toFixed(2)}`;
           },
         },
       },
@@ -142,7 +133,7 @@ function OutlierVisualization() {
       x: {
         title: {
           display: true,
-          text: "Hours per day",
+          text: columnName,
           font: { size: 14 },
         },
         ticks: { stepSize: 1 },
@@ -153,13 +144,14 @@ function OutlierVisualization() {
           text: "Jitter (apenas para separar pontos)",
           font: { size: 12 },
         },
-        ticks: { display: false }, // esconde os ticks do eixo Y pois não têm significado real
+        ticks: { display: false },
         min: 0.5,
         max: 1.5,
       },
     },
   };
 
+  if (error) return <div className="basic-card" style={{ color: "red" }}>{error}</div>;
   if (!chartData) return <div className="basic-card">Carregando visualização...</div>;
 
   return (

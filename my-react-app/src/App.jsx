@@ -17,6 +17,8 @@ import SectionDivider from "./SectionDivider.jsx"
 import CorrelationHeatmap from "./charts/heat_map/CorrelationHeatmap.jsx"
 import BoxplotGrid from "./charts/boxplot/BoxplotGrid.jsx"
 import OutlierVisualization from "./charts/boxplot/OutlierVisualization.jsx";
+import KMeansMetrics from "./charts/line/KMeansMetrics.jsx"
+import Cluster3DVisualization from "./charts/3D/Cluster3DVisualization.jsx"
 import { useState } from "react";
 
 
@@ -158,13 +160,22 @@ return (
               Each cluster was analyzed by comparing its average feature values to the overall dataset, identifying risk factors like high stress, high addiction, poor sleep, or low social interaction. <br/>
               Importantly, clustering does not imply causation – it only exposes associations that can guide further research or targeted interventions.
             </p>
-          
+          <h3 className="content-title">Choosing the optimal number of clusters</h3>
+            <p className="section-paragraph">
+              Two methods helped decide the number of clusters: the elbow method and the silhouette score. <br/>
+              The elbow method looks at inertia (within-cluster sum of squares). The silhouette score measures how well separated the clusters are. <br/>
+              Both pointed to k = 5, which gave the best balance and the highest silhouette score.
+            </p>
+            <KMeansMetrics />
           <h3 className="content-title">K-Means Training and visualization</h3>
             <p className="section-paragraph">
               After training the K-Means model, we can now observe how the clusters were formed. <br/>
               The plot below shows each student as a point, with different colors representing different clusters. <br/>
               Ideally, points from the same cluster appear close together, revealing distinct student profiles.
             </p>
+            <Cluster3DVisualization />
+          <h3 className="content-title">Visualizing the clusters in 3D</h3>
+
           <h3 className="content-title">Cluster Interpretation</h3>
               <p className="section-paragraph">
                 The clustering analysis suggests five different student profiles based on social media use, 

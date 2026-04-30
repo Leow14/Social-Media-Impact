@@ -14,9 +14,12 @@
     "chart.js": "^4.5.1",
     "chartjs-chart-box-and-violin-plot": "^4.0.0",
     "chartjs-chart-matrix": "^3.0.0",
+    "plotly.js": "^3.5.0",
+    "plotly.js-dist": "^3.5.0",
     "react": "^19.2.5",
     "react-chartjs-2": "^5.3.1",
     "react-dom": "^19.2.5",
+    "react-plotly.js": "^2.6.0",
     "recharts": "^3.8.1"
   },
   "devDependencies": {

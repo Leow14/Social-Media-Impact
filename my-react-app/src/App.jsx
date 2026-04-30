@@ -169,9 +169,12 @@ return (
             <KMeansMetrics />
           <h3 className="content-title">K-Means Training and visualization</h3>
             <p className="section-paragraph">
-              After training the K-Means model, we can now observe how the clusters were formed. <br/>
-              The plot below shows each student as a point, with different colors representing different clusters. <br/>
+              After training the K-Means model, we can now observe how the clusters were formed.
+              The plot below shows each student as a point, with different colors representing different clusters.
               Ideally, points from the same cluster appear close together, revealing distinct student profiles.
+              <br/><br/>
+              The X, Y and Z axes are Principal Components (PCA). PCA reduces the original data to just three dimensions while keeping the most important patterns. 
+              This makes it possible to visualize high‑dimensional data in 3D, helping us see how clusters separate or overlap.
             </p>
             <Cluster3DVisualization />
           <h3 className="content-title">Visualizing the clusters in 3D</h3>

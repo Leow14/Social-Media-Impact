@@ -84,7 +84,7 @@ section {
 
 /* Header.jsx */
 .app-header {
-  background-color: #1f3a5f;
+  background-color: #1b4965;
   color: white;
   width: 240px;
   height: 100vh;
@@ -236,4 +236,42 @@ section {
     padding: 24px 20px;
     text-align: center;
   }
+  
+  .footer-links p {
+    text-align: center;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.main-footer {
+  background-color: #05101f;
+  color: white;
+  margin-top: 56px;
+  padding: 32px 5px;
+}
+
+.footer-links {
+  max-width: 1180px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.footer-links p {
+  margin: 12px 0;
+  text-align: left;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-links i {
+  margin-right: 8px;
+  width: 24px;
+  text-align: center;
+}
+
+.footer-links {
+  font-size: 1rem;
 }

@@ -266,31 +266,33 @@ return (
         </section>
       </main>
       <footer className="main-footer">
-        <div className="footer-links">
-          <p>
-            <i className="bi bi-star-fill"></i> Liked this project? Leave a star on{" "}
-            <a href="https://github.com/Leow14/Social-Media-Impact" target="_blank" rel="noopener noreferrer">
-              GitHub repository
-            </a>
-          </p>
-          <p>
-            <i className="bi bi-linkedin"></i> LinkedIn:{" "}
-            <a href="https://www.linkedin.com/in/leo-amorim/" target="_blank" rel="noopener noreferrer">
-              https://www.linkedin.com/in/leo-amorim/
-            </a>
-          </p>
-          <p>
-            <i className="bi bi-github"></i> GitHub:{" "}
-            <a href="https://github.com/Leow14/" target="_blank" rel="noopener noreferrer">
-              https://github.com/Leow14/
-            </a>
-          </p>
-          <p>
-            <i class="bi bi-envelope-fill"></i> Gmail:{" "}
-            <a href="mailto:leonardo.amorim1411@gmail.com">
-              leonardoamorimdearaujo@hotmail.com
-            </a>
-          </p>
+        <div className="footer-container">
+          <div className="footer-links">
+            <p>
+              <i className="bi bi-star-fill"></i> Liked this project? Leave a star on{" "}
+              <a href="https://github.com/Leow14/Social-Media-Impact" target="_blank" rel="noopener noreferrer">
+                GitHub repository
+              </a>
+            </p>
+            <p>
+              <i className="bi bi-linkedin"></i> LinkedIn:{" "}
+              <a href="https://www.linkedin.com/in/leo-amorim/" target="_blank" rel="noopener noreferrer">
+                https://www.linkedin.com/in/leo-amorim/
+              </a>
+            </p>
+            <p>
+              <i className="bi bi-github"></i> GitHub:{" "}
+              <a href="https://github.com/Leow14/" target="_blank" rel="noopener noreferrer">
+                https://github.com/Leow14/
+              </a>
+            </p>
+            <p>
+              <i class="bi bi-envelope-fill"></i> Gmail:{" "}
+              <a href="mailto:leonardo.amorim1411@gmail.com">
+                leonardo.amorim1411@gmail.com
+              </a>
+            </p>
+          </div>
         </div>
       </footer>
     </>

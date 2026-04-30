@@ -4,7 +4,6 @@ function Cluster3DVisualization() {
   const [plotReady, setPlotReady] = useState(false);
 
   useEffect(() => {
-    // Importa dinamicamente o Plotly para evitar problemas de carregamento
     import("plotly.js-dist").then((Plotly) => {
       fetch("/pca_clusters.json")
         .then((res) => res.json())

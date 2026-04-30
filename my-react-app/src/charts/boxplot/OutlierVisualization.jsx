@@ -141,7 +141,7 @@ function OutlierVisualization({ columnName }) {
       y: {
         title: {
           display: true,
-          text: "Jitter (apenas para separar pontos)",
+          text: "Jitter",
           font: { size: 12 },
         },
         ticks: { display: false },

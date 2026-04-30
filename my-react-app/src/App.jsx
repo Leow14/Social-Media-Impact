@@ -20,6 +20,7 @@ import OutlierVisualization from "./charts/boxplot/OutlierVisualization.jsx";
 import KMeansMetrics from "./charts/line/KMeansMetrics.jsx"
 import Cluster3DVisualization from "./charts/3D/Cluster3DVisualization.jsx"
 import { useState } from "react";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 
 function App() {
@@ -40,12 +41,19 @@ return (
             health risks in teenagers. <br/>
             Source:<a href="https://www.kaggle.com/datasets/algozee/teenager-menthal-healy" target="_blank"> Kaggle - Teen Mental Health Dataset </a>
           </p>
+          <ContentDivider/>
         </section>
         <section id="understanding-data">
           <h2 className="section-title">Understanding the Data</h2>
           <p className="section-paragraph">
-            
+            Understanding the data is the first step before any modeling. This dataset helps us explore how social media use relates to teen mental health indicators like stress, anxiety, and addiction.<br/>
+            To examine the data properly, different chart types were used depending on the nature of each variable:<br/>
+            - <strong>Bar charts</strong> for discrete numeric indicators (e.g., age, stress level, anxiety level, addiction level) – they show how many students fall into each category.<br/>
+            - <strong>Donut charts</strong> for nominal (categorical) variables (e.g., gender, preferred platform, social interaction level, depression label) – they display proportions of each group.<br/>
+            - <strong>Histograms</strong> for continuous numeric indicators (e.g., sleep hours, daily social media hours, screen time before sleep, academic performance, physical activity) – they reveal the distribution and spread of the data.<br/>
+            These visualizations help identify patterns, imbalances, and potential risk groups before deeper analysis.
           </p>
+          <ContentDivider/>
 
           <h3 className="content-title">Discrete numeric indicators</h3>
           <p className="section-paragraph">
@@ -114,7 +122,7 @@ return (
           <div className="charts-grid" className="chart-outlier">
             <div className="outlier-selector-container">
               <label htmlFor="column-select" className="outlier-selector-label">
-                Escolha a variável numérica:
+                Choose the numeric feature:
               </label>
               <select
                 id="column-select"
@@ -140,6 +148,7 @@ return (
         </section>
 
         <section id="clustering">
+          <SectionDivider/>
           <h2 className="section-title">K-Means Clustering</h2>
             <p className="section-paragraph">
               K-Means is an unsupervised machine learning algorithm used to partition data into distinct groups, called clusters, based on similarity. <br/>
@@ -160,6 +169,7 @@ return (
               Each cluster was analyzed by comparing its average feature values to the overall dataset, identifying risk factors like high stress, high addiction, poor sleep, or low social interaction. <br/>
               Importantly, clustering does not imply causation – it only exposes associations that can guide further research or targeted interventions.
             </p>
+            <ContentDivider/>
           <h3 className="content-title">Choosing the optimal number of clusters</h3>
             <p className="section-paragraph">
               Two methods helped decide the number of clusters: the elbow method and the silhouette score. <br/>
@@ -167,7 +177,8 @@ return (
               Both pointed to k = 5, which gave the best balance and the highest silhouette score.
             </p>
             <KMeansMetrics />
-          <h3 className="content-title">K-Means Training and visualization</h3>
+            <ContentDivider/>
+          <h3 className="content-title">K-Means Training and visualization in 3D</h3>
             <p className="section-paragraph">
               After training the K-Means model, we can now observe how the clusters were formed.
               The plot below shows each student as a point, with different colors representing different clusters.
@@ -177,8 +188,7 @@ return (
               This makes it possible to visualize high‑dimensional data in 3D, helping us see how clusters separate or overlap.
             </p>
             <Cluster3DVisualization />
-          <h3 className="content-title">Visualizing the clusters in 3D</h3>
-
+            <ContentDivider/>
           <h3 className="content-title">Cluster Interpretation</h3>
               <p className="section-paragraph">
                 The clustering analysis suggests five different student profiles based on social media use, 
@@ -239,6 +249,7 @@ return (
         </section>
 
         <section id="conclusions">
+          <SectionDivider/>
           <h2 className="section-title">Conclusions</h2>          
               <h3 className="content-title">General Conclusion</h3>
               <p className="section-paragraph">Overall, the clusters suggest that students do not follow a single pattern of social media impact. 
@@ -254,7 +265,34 @@ return (
               rather than as definitive explanations of student behavior.</p>
         </section>
       </main>
-
+      <footer className="main-footer">
+        <div className="footer-links">
+          <p>
+            <i className="bi bi-star-fill"></i> Liked this project? Leave a star on{" "}
+            <a href="https://github.com/Leow14/Social-Media-Impact" target="_blank" rel="noopener noreferrer">
+              GitHub repository
+            </a>
+          </p>
+          <p>
+            <i className="bi bi-linkedin"></i> LinkedIn:{" "}
+            <a href="https://www.linkedin.com/in/leo-amorim/" target="_blank" rel="noopener noreferrer">
+              https://www.linkedin.com/in/leo-amorim/
+            </a>
+          </p>
+          <p>
+            <i className="bi bi-github"></i> GitHub:{" "}
+            <a href="https://github.com/Leow14/" target="_blank" rel="noopener noreferrer">
+              https://github.com/Leow14/
+            </a>
+          </p>
+          <p>
+            <i class="bi bi-envelope-fill"></i> Gmail:{" "}
+            <a href="mailto:leonardo.amorim1411@gmail.com">
+              leonardoamorimdearaujo@hotmail.com
+            </a>
+          </p>
+        </div>
+      </footer>
     </>
   )
 

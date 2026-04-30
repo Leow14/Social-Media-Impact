@@ -44,7 +44,6 @@ function getStats(values) {
   return { min, q1, median, q3, max }
 }
 
-/* 🔥 COMPONENTE DO BOXPLOT (ESSENCIAL) */
 const BoxShape = (props) => {
   const { cx, yAxis, payload } = props
 

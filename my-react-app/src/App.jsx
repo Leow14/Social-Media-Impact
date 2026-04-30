@@ -21,6 +21,7 @@ import KMeansMetrics from "./charts/line/KMeansMetrics.jsx"
 import Cluster3DVisualization from "./charts/3D/Cluster3DVisualization.jsx"
 import { useState } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import SmallContentDivider from "./SmallContentDivider.jsx"
 
 
 function App() {
@@ -41,7 +42,7 @@ return (
             health risks in teenagers. <br/>
             Source:<a href="https://www.kaggle.com/datasets/algozee/teenager-menthal-healy" target="_blank"> Kaggle - Teen Mental Health Dataset </a>
           </p>
-          <ContentDivider/>
+          <SmallContentDivider/>
         </section>
         <section id="understanding-data">
           <h2 className="section-title">Understanding the Data</h2>
@@ -53,7 +54,7 @@ return (
             - <strong>Histograms</strong> for continuous numeric indicators (e.g., sleep hours, daily social media hours, screen time before sleep, academic performance, physical activity) – they reveal the distribution and spread of the data.<br/>
             These visualizations help identify patterns, imbalances, and potential risk groups before deeper analysis.
           </p>
-          <ContentDivider/>
+          <SmallContentDivider/>
 
           <h3 className="content-title">Discrete numeric indicators</h3>
           <p className="section-paragraph">
@@ -167,7 +168,7 @@ return (
 
               Interpreting the five resulting clusters revealed distinct student profiles, such as "Younger Stressed Low-Interaction Users" (Cluster 0) and "Balanced Low-Risk Users" (Cluster 1). <br/>
               Each cluster was analyzed by comparing its average feature values to the overall dataset, identifying risk factors like high stress, high addiction, poor sleep, or low social interaction. <br/>
-              Importantly, clustering does not imply causation – it only exposes associations that can guide further research or targeted interventions.
+              Importantly, clustering does not imply causation, it only exposes associations that can guide further research or targeted interventions.
             </p>
             <ContentDivider/>
           <h3 className="content-title">Choosing the optimal number of clusters</h3>
